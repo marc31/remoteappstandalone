@@ -1,6 +1,5 @@
 'use strict';
 
-
 module.exports = function (app) {
 
   const remoteApp = require('../controllers/remonteApp.controllers');
@@ -8,7 +7,6 @@ module.exports = function (app) {
   // Users list
   app.route('/api/remoteApp/:toDo')
      .get( remoteApp.toDo );
-
 
 };
 

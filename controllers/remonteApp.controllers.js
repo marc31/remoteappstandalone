@@ -22,6 +22,14 @@ exports.toDo = function (req, res, next) {
 
   let command = req.params.toDo;
 
+  if (remotesAvaible || remotesAvaible.length === 0){
+    res.status(500);
+    return res.json({
+      success: false,
+      msg: 'You have to config LIRC on the server'
+    });
+  }
+
   try {
     lircNode.irsend.send_once(device, req.params.toDo, function() {
       console.log(`Sent ${command} to ${device}`);
@@ -32,7 +40,7 @@ exports.toDo = function (req, res, next) {
       msg: `Sent ${command} to ${device}`
     });
 
-  } catch(err){
+  }catch(err){
 
     res.status(500);
     res.json({

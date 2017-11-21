@@ -41,13 +41,13 @@ const lircClient = (function(document, window, undefined){
     console.log(cmd);
 
     let xhr = new XMLHttpRequest();
-    //let rep = {};
+    let rep = {};
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-          //rep = JSON.parse(xhr.responseText);
+          rep = JSON.parse(xhr.responseText);
           if (xhr.status === 500) {
-            alert('LIRC error');
+            alert(rep.msg);
           }
           if (cb) cb(rep);
         }
