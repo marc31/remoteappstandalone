@@ -1,0 +1,27 @@
+extends layout
+
+block content
+
+  section(class='center')
+
+    div(class='row')
+
+      button(type='button' class='btn btn-red' data-cmd='off')
+        span(class="icon-switchoff")
+
+      button(type='button' class='btn btn-blue' data-cmd='KEY_POWER')
+        span(class="icon-switch")
+
+    div(class='row')
+      button(type='button' class='btn btn-green' data-cmd='KEY_AUX' data-mode='repeat') Rasp
+
+    div(class='row')
+
+      button(type='button' class='btn btn-red' data-cmd='KEY_MUTE')
+        span(class="icon-volume-mute")
+
+      button(type='button' class='btn btn-blue' data-cmd='KEY_VOLUMEDOWN' data-mode='repeat')
+        span(class="icon-volume-decrease")
+
+      button(type='button' class='btn btn-blue' data-cmd='KEY_VOLUMEUP' data-mode='repeat')
+        span(class="icon-volume-increase")

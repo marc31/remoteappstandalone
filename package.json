@@ -1,0 +1,22 @@
+{
+  "name": "remoteappstandalone",
+  "version": "0.0.1",
+  "license": "GPL-3.0",
+  "description": "Web Application to communication with LIRC",
+  "main": "bin/www.js",
+  "repository": "https://github.com/marc31/remoteappstandalone.git",
+  "author": "Marc Foletto",
+  "scripts": {
+    "start": "DEBUG=* node ./bin/www",
+    "start-prod": "NODE_ENV=production node ./bin/www"
+  },
+  "dependencies": {
+    "compression": "^1.7.1",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "helmet": "^3.9.0",
+    "lirc_node": "^0.0.4",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11"
+  }
+}
