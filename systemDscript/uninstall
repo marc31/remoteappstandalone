@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sudo rm /usr/local/bin/remoteAppStandAlone
+sudo rm /etc/systemd/system/remoteAppStandAlone.service

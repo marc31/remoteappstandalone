@@ -1,0 +1,11 @@
+[Unit]
+Description=remoteAppStandAlone
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/remoteAppStandAlone start
+ExecStop=/usr/local/bin/remoteAppStandAlone stop
+
+
+[Install]
+WantedBy=multi-user.target
