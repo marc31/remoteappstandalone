@@ -2,6 +2,8 @@
 
 const express = require('express');
 const logger = require('morgan');
+const helmet = require('helmet');
+const compression = require('compression');
 
 const index = require('./routes/index');
 
@@ -41,7 +43,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.redirect('/');
 });
 
 module.exports = app;
