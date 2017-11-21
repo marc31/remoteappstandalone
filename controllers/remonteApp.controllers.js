@@ -2,27 +2,32 @@
 
 const device = 'NAD_SR6';
 
-const debug = require('debug')('remoteAppStandalone:server');
-
 const lircNode = require('lirc_node');
 
-lircNode.init();
+let remotesAvaible = false;
 
-const remotesAvaible = JSON.stringify(lircNode.remotes);
-
-// To see all of the remotes and commands that LIRC knows about
-
-if (remotesAvaible || remotesAvaible.length === 0){
-  debug('remoteApp : You have LIRC issue. No remote avaible');
-} else {
-  debug('remoteApp : remote avaible in LIRC' + remotesAvaible);
-}
+lircNode.init(
+  () => {
+    if (!Object.keys(lircNode.remotes).length || JSON.stringify(lircNode.remotes).indexOf('command not found') >= 0 ) {
+      console.error('remoteApp : May be you have an LIRC issue. No Remote Avaible');
+      remotesAvaible = false;
+    } else {
+      //@todo change lirc_node to know when it ready.
+      setTimeout( () => {
+          console.info('remoteApp : remotes and commands avaible in LIRC');
+          console.info(lircNode.remotes);
+          remotesAvaible = true;
+         }
+      , 500);
+    }
+  }
+);
 
 exports.toDo = function (req, res, next) {
 
   let command = req.params.toDo;
 
-  if (remotesAvaible || remotesAvaible.length === 0){
+  if (!remotesAvaible){
     res.status(500);
     return res.json({
       success: false,
