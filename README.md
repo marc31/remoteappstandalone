@@ -50,4 +50,4 @@ Replace KEY_MUTE by a valid command (cf your lircd.conf)
 ## License
 
 Copyright © 2015 [Marc Foletto](https://github.com/marc31)
-Released under the MIT license.
+Released under the GPL-3.0 license.
