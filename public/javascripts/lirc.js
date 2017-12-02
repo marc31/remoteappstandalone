@@ -10,8 +10,8 @@ const lircClient = (function(document, window, undefined){
     let count = 0;
     const speed = 500;
 
-    input.addEventListener( 'mousedown', function(e) {
-        interval = setInterval( function(e){
+    input.addEventListener( 'mousedown', function() {
+        interval = setInterval( function(){
           count++;
           sendCmd(cmd);
           if (count > 10){
@@ -22,7 +22,7 @@ const lircClient = (function(document, window, undefined){
       }
     );
 
-    input.addEventListener( 'mouseup', function(e) {
+    input.addEventListener( 'mouseup', function() {
         sendCmd(cmd);
         clearInterval(interval);
       }
@@ -30,7 +30,7 @@ const lircClient = (function(document, window, undefined){
   }
 
   function addClick(input, cmd){
-      input.addEventListener( 'click', function(e) {
+      input.addEventListener( 'click', function() {
           sendCmd(cmd);
         }
       );
@@ -92,7 +92,7 @@ const lircClient = (function(document, window, undefined){
 
 })(document, window);
 
-// l'iframe est chargee
+// DOM is ready
 window.addEventListener('load', lircClient.addListeners);
 
 
