@@ -16,7 +16,7 @@ $ yarn install
 
 # Use the app
 
-First you need to change the device in /controlles/remonteApp.controllers.js
+First you need to change the device in /controllers/remoteApp.controllers.js
 
 ```js
 const device = 'YOUR_DEVICE_NAME_IN_LIRC';
