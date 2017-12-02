@@ -23,7 +23,7 @@ lircNode.init(
   }
 );
 
-exports.toDo = function (req, res, next) {
+exports.toDo = function (req, res) {
 
   let command = req.params.toDo;
 
@@ -45,7 +45,7 @@ exports.toDo = function (req, res, next) {
       msg: `Sent ${command} to ${device}`
     });
 
-  }catch(err){
+  } catch(err) {
 
     res.status(500);
     res.json({
