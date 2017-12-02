@@ -1,16 +1,16 @@
 #!/bin/sh
 
 MY_PATH=`dirname "$0"`
-MY_PATH=`( cd "$MY_PATH" && pwd )`
+MY_PATH=`( cd "${MY_PATH}" && pwd )`
 
 echo "Make script executable"
-sudo chmod u+x $MY_PATH/remoteAppStandAlone
+sudo chmod u+x ${MY_PATH}/remoteAppStandAlone
 
 echo "Link to /usr/local/bin"
-sudo ln -sf $MY_PATH/remoteAppStandAlone /usr/local/bin/remoteAppStandAlone
+sudo ln -sf ${MY_PATH}/remoteAppStandAlone /usr/local/bin/remoteAppStandAlone
 
 echo "Link to /etc/systemd/system/remoteAppStandAlone.service"
-sudo ln -sf $MY_PATH/remoteAppStandAlone.service /etc/systemd/system/remoteAppStandAlone.service
+sudo ln -sf ${MY_PATH}/remoteAppStandAlone.service /etc/systemd/system/remoteAppStandAlone.service
 
 echo "Enable service"
 sudo systemctl enable remoteAppStandAlone.service

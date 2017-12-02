@@ -3,9 +3,9 @@
 start() {
   echo 'Start RemoteAppStandAlone'
   MYPATH=`ls -l /usr/local/bin/remoteAppStandAlone | awk '{print $NF}'`
-  MYPATH=`dirname $MYPATH`
-  MYPATH=`dirname $MYPATH`
-  cd $MYPATH
+  MYPATH=`dirname ${MYPATH}`
+  MYPATH=`dirname ${MYPATH}`
+  cd ${MYPATH}
   npm run start-prod
 }
 
