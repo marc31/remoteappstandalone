@@ -1,5 +1,3 @@
-
-
 const device = 'NAD_SR6';
 
 const lircNode = require('lirc_node');
