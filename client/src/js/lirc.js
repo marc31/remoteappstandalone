@@ -3,7 +3,7 @@ const lircClient = (function lircClient(document, window) {
   // / Private
   // //////////////////////////////////
   function sendCmd(cmd, cb) {
-    console.log(cmd);
+    window.console.log(cmd);
 
     const xhr = new window.XMLHttpRequest();
     let reponse = {};
@@ -13,7 +13,7 @@ const lircClient = (function lircClient(document, window) {
         try {
           reponse = JSON.parse(xhr.responseText);
         } catch (e) {
-          console.log('Api error');
+          window.console.log('Api error');
         }
 
         if (xhr.status === 500) {
