@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "no-use-before-define": "warn",
+    "no-plusplus": "off",
+    "one-var": "off"
+  },
+  "env": {
+    "browser": true
+  }
+
+}

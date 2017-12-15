@@ -1,0 +1,17 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "rules": {
+    "order/properties-alphabetical-order": null,
+    "property-no-unknown": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "declaration-property-value-blacklist":
+    [
+      {"border": ["none"]},
+      {"severity": "warning"}
+    ]
+  }
+}

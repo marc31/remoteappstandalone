@@ -6,7 +6,7 @@ start() {
   MYPATH=`dirname ${MYPATH}`
   MYPATH=`dirname ${MYPATH}`
   cd ${MYPATH}
-  npm run start-prod
+  NODE_ENV=production node ./server/server
 }
 
 stop() {

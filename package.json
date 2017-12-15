@@ -7,16 +7,47 @@
   "repository": "https://github.com/marc31/remoteappstandalone.git",
   "author": "Marc Foletto",
   "scripts": {
-    "start": "DEBUG=* node ./bin/www",
-    "start-prod": "NODE_ENV=production node ./bin/www"
+    "start": "DEBUG=* node ./server/server",
+    "prod": "NODE_ENV=production node ./server/server",
+    "watch": "webpack -w --progress --color --config webpack.dev.js",
+    "build": "webpack --progress --color --config webpack.prod.js",
+    "stylelint": "stylelint 'client/src/**/*.scss' --fix; exit 0;",
+    "eslintserv": "eslint server/* --fix"
   },
   "dependencies": {
     "compression": "^1.7.1",
-    "debug": "~2.6.9",
-    "express": "~4.15.5",
+    "debug": "^2.6.9",
+    "express": "^4.16.2",
     "helmet": "^3.9.0",
-    "lirc_node": "^0.0.4",
-    "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11"
+    "lirc_node": "0.0.4",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "cssnano": "^3.10.0",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "img-loader": "^2.0.0",
+    "node-sass": "^4.7.2",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^2.0.9",
+    "pug": "^2.0.0-rc.4",
+    "pug-loader": "^2.3.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "stylelint": "^8.3.1",
+    "stylelint-config-sass-guidelines": "^4.0.1",
+    "stylelint-order": "^0.7.0",
+    "stylelint-scss": "^2.2.0",
+    "stylelint-webpack-plugin": "^0.9.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.9.1",
+    "webpack-merge": "^4.1.1"
   }
 }

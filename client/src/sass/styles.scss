@@ -1,0 +1,85 @@
+html {
+  font-size: 14px;
+  line-height: 1.15;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 50px;
+  overflow-x: hidden;
+  min-width: 320px;
+  background: #fff;
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.4285em;
+  color: rgba(0, 0, 0, 0.87);
+  font-smoothing: antialiased;
+}
+
+.center {
+  text-align: center;
+}
+
+.row {
+  padding: 0.5rem;
+}
+
+.btn {
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  min-height: 1em;
+  outline: 0;
+  border: none;
+  vertical-align: baseline;
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  margin: 0 0.25em 0.25rem 0;
+  padding: 0.78571429em 1.5em;
+  text-transform: none;
+  text-shadow: none;
+  font-weight: 700;
+  line-height: 1em;
+  font-style: normal;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 0.28571429rem;
+  box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34, 36, 38, 0.15) inset;
+  user-select: none;
+  transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+  will-change: '';
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-blue {
+  background-color: #2185d0;
+}
+
+.btn-blue:hover {
+  background-color: #1678c2;
+}
+
+.btn-green {
+  background-color: #21ba45;
+}
+
+.btn-green:hover {
+  background-color: #16ab39;
+}
+
+.btn-red {
+  background-color: #db2828;
+}
+
+.btn-red:hover {
+  background-color: #d01919;
+}

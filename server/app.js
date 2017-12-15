@@ -1,11 +1,7 @@
-'use strict';
-
 const express = require('express');
 const logger = require('morgan');
 const helmet = require('helmet');
 const compression = require('compression');
-
-const index = require('./routes/index');
 
 const app = express();
 
@@ -17,26 +13,35 @@ app.use(compression());
 
 app.use(logger('dev'));
 
-// view engine setup
-app.set('views', './views');
-app.set('view engine', 'pug');
-
 // Static
-app.use(express.static('./public'));
+app.use('/', express.static(`${__dirname}../../client/dist/`));
 
-// Routes
-app.use('/', index);
-require('./routes/remoteApp.routes')(app);
+// First Page
+app.get('/', (req, res) => {
+  res.sendFile('index.html', { root: `${__dirname}../../client/dist` });
+});
+
+// Api route
+const remoteApp = require('./controllers/remoteApp.controllers');
+
+app.route('/api/remoteApp/:toDo')
+  .get(remoteApp.toDo);
+
+// Redirect in all other case
+app.get('/*', (req, res) => {
+  res.redirect('/');
+});
+
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res) {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
