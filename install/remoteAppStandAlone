@@ -6,7 +6,7 @@ start() {
   MYPATH=`dirname ${MYPATH}`
   MYPATH=`dirname ${MYPATH}`
   cd ${MYPATH}
-  NODE_ENV=production node ./server/server
+  NODE_ENV=production node ./server/remoteAppBack.js
 }
 
 stop() {
