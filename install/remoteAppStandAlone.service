@@ -7,23 +7,8 @@ Type=simple
 User=volumio
 Group=volumio
 
-#Create var/run/remoteAppStandAlone
-RuntimeDirectory=/var/run/remoteAppStandAlone
-
-#Droits d'accès sur le réperoitre /var/run/remoteAppStandAlone
-RuntimeDirectoryMode=770
-
-#PID File
-PIDFile=/var/run/remoteAppStandAlone/remoteAppStandAlone.pid
-
-#Ne doit pas considérer que le service est actif lorsque le processus neo4j c'est terminé normalement.
-RemainAfterExit=no
-
-Restart=on-failure
-
 ExecStart=/usr/local/bin/remoteAppStandAlone start
 ExecStop=/usr/local/bin/remoteAppStandAlone stop
-
 
 [Install]
 WantedBy=multi-user.target

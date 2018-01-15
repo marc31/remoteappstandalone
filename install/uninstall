@@ -11,3 +11,5 @@ sudo rm /usr/local/bin/remoteAppStandAlone
 
 echo "Remove unit file"
 sudo rm /etc/systemd/system/remoteAppStandAlone.service
+
+#sudo systemctl daemon-reload
