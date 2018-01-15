@@ -9,8 +9,12 @@ sudo chmod u+x ${MY_PATH}/remoteAppStandAlone
 echo "Link to /usr/local/bin"
 sudo ln -sf ${MY_PATH}/remoteAppStandAlone /usr/local/bin/remoteAppStandAlone
 
-echo "Link to /etc/systemd/system/remoteAppStandAlone.service"
-sudo ln -sf ${MY_PATH}/remoteAppStandAlone.service /etc/systemd/system/remoteAppStandAlone.service
+# Remove because systemd don't want symlink
+#echo "Link to /etc/systemd/system/remoteAppStandAlone.service"
+#sudo ln -sf ${MY_PATH}/remoteAppStandAlone.service /etc/systemd/system/remoteAppStandAlone.service
+
+echo "Copy to /etc/systemd/system/remoteAppStandAlone.service"
+sudo cp -rf ${MY_PATH}/remoteAppStandAlone.service /etc/systemd/system/remoteAppStandAlone.service
 
 echo "Enable service"
 sudo systemctl enable remoteAppStandAlone.service

@@ -1,4 +1,10 @@
 #!/bin/sh
 
+echo "Disable service"
+sudo systemctl disable remoteAppStandAlone.service
+
+echo "Remove bin"
 sudo rm /usr/local/bin/remoteAppStandAlone
+
+echo "Remove unit file"
 sudo rm /etc/systemd/system/remoteAppStandAlone.service
