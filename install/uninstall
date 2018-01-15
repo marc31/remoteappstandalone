@@ -1,7 +1,10 @@
 #!/bin/sh
 
 echo "Disable service"
-sudo systemctl disable remoteAppStandAlone.service
+sudo systemctl disable remoteAppStandAlone
+
+echo "Stop service"
+sudo systemctl stop remoteAppStandAlone
 
 echo "Remove bin"
 sudo rm /usr/local/bin/remoteAppStandAlone

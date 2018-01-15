@@ -17,4 +17,7 @@ echo "Copy to /etc/systemd/system/remoteAppStandAlone.service"
 sudo cp -rf ${MY_PATH}/remoteAppStandAlone.service /etc/systemd/system/remoteAppStandAlone.service
 
 echo "Enable service"
-sudo systemctl enable remoteAppStandAlone.service
+sudo systemctl enable remoteAppStandAlone
+
+echo "Start service"
+sudo systemctl start remoteAppStandAlone
