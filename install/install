@@ -3,11 +3,11 @@
 MY_PATH=`dirname "$0"`
 MY_PATH=`( cd "${MY_PATH}" && pwd )`
 
-echo "Make script executable"
-sudo chmod u+x ${MY_PATH}/remoteAppStandAlone
-
 echo "Link to /usr/local/bin"
 sudo ln -sf ${MY_PATH}/remoteAppStandAlone /usr/local/bin/remoteAppStandAlone
+
+echo "Make script executable"
+sudo chmod u+x /usr/local/bin/remoteAppStandAlone
 
 # Remove because systemd don't want symlink
 #echo "Link to /etc/systemd/system/remoteAppStandAlone.service"
