@@ -3,6 +3,8 @@ Description=remoteAppStandAlone
 
 [Service]
 Type=simple
+User=volumio
+Group=volumio
 ExecStart=/usr/local/bin/remoteAppStandAlone start
 ExecStop=/usr/local/bin/remoteAppStandAlone stop
 
