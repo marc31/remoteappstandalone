@@ -59,4 +59,21 @@ typings/
 # IDE
 /.idea/
 
+# Distribution file
 /client/dist
+
+
+# conf file, expect exemple.conf file
+*.conf.js
+!*.conf.exemple.js
+
+# Tempory files
+*tmp*
+
+/server/debrid/auth.cookie
+
+
+marcW
+
+
+

@@ -24,9 +24,9 @@ module.exports = {
             {
                 test: /\.(ico|eot|otf|webp|ttf|woff|svg|woff2)$/i,
                 use: {
-                    loader:'file-loader',
+                    loader:'url-loader',
                     options: {
-                        limit: 100000,
+                        limit: 8192,
                         name: 'ico/[name].[hash:8].[ext]',
                     }
                 },

@@ -3,7 +3,8 @@
   "rules": {
     "no-use-before-define": "warn",
     "no-plusplus": "off",
-    "one-var": "off"
+    "one-var": "off",
+    "no-console": "off"
   },
   "env": {
     "browser": true

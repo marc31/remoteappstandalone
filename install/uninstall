@@ -1,15 +1,64 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-echo "Disable service"
-sudo systemctl disable remoteAppStandAlone
 
-echo "Stop service"
-sudo systemctl stop remoteAppStandAlone
+######################## HELPERS
 
-echo "Remove bin"
-sudo rm /usr/local/bin/remoteAppStandAlone
+## Get path of this file
+path_of_this_file=`dirname "$0"`
+path_of_this_file=`( cd "${path_of_this_file}" && pwd )`
 
-echo "Remove unit file"
-sudo rm /etc/systemd/system/remoteAppStandAlone.service
+# colorize and formatting command line
+green='\x1B[0;32m'
+cyan='\x1B[1;36m'
+blue='\x1B[0;34m'
+grey='\x1B[1;30m'
+red='\x1B[0;31m'
+bold='\033[1m'
+normal='\033[0m'
 
-#sudo systemctl daemon-reload
+function say_blue {
+  echo -e "${blue}${bold}$1${normal}"
+}
+
+function say_red {
+  echo -e "${red}${bold}$1${normal}"
+}
+
+function say_green {
+  echo -e "${green}${bold}$1${normal}"
+}
+
+function say_grey {
+  echo -e "${green}$1${normal}"
+}
+
+path_of_this_file=`dirname "$0"`
+path_of_this_file=`( cd "${path_of_this_file}" && pwd )`
+install_path=''
+function install_path_fct () {
+  cd $path_of_this_file/../
+  install_path=`pwd`
+  cd $path_of_this_file
+}
+install_path_fct
+
+function removesystemD() {
+
+  say_blue "Disable service"
+  sudo systemctl disable $1
+
+  say_blue "Stop service"
+  sudo systemctl stop $1
+
+  say_blue "Remove bin"
+  sudo rm /usr/local/bin/$1.init
+
+  say_blue "Remove unit file"
+  sudo rm /etc/systemd/system/$1.service
+
+  #sudo systemctl daemon-reload
+}
+################################
+
+
+removesystemD remoteapp

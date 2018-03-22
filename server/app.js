@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 // Api route
-const remoteApp = require('./controllers/remoteApp.controllers');
+const remoteApp = require('./controllers/remoteApp.controller.js');
 
 app.route('/api/remoteApp/:toDo')
   .get(remoteApp.toDo);

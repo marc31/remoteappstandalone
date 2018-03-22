@@ -1,21 +1,67 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-#sudo systemctl daemon-reload
 
-MY_PATH=`dirname "$0"`
-MY_PATH=`( cd "${MY_PATH}" && pwd )`
+######################## HELPERS
 
-echo "Link to /usr/local/bin"
-sudo ln -sf ${MY_PATH}/remoteAppStandAlone /usr/local/bin/remoteAppStandAlone
+## Get path of this file
+path_of_this_file=`dirname "$0"`
+path_of_this_file=`( cd "${path_of_this_file}" && pwd )`
 
-echo "Make script executable"
-sudo chmod u+x /usr/local/bin/remoteAppStandAlone
+# colorize and formatting command line
+green='\x1B[0;32m'
+cyan='\x1B[1;36m'
+blue='\x1B[0;34m'
+grey='\x1B[1;30m'
+red='\x1B[0;31m'
+bold='\033[1m'
+normal='\033[0m'
 
-echo "Copy to /etc/systemd/system/remoteAppStandAlone.service"
-sudo cp -rf ${MY_PATH}/remoteAppStandAlone.service /etc/systemd/system/remoteAppStandAlone.service
+function say_blue {
+  echo -e "${blue}${bold}$1${normal}"
+}
 
-echo "Enable service"
-sudo systemctl enable remoteAppStandAlone
+function say_red {
+  echo -e "${red}${bold}$1${normal}"
+}
 
-echo "Start service"
-sudo systemctl start remoteAppStandAlone
+function say_green {
+  echo -e "${green}${bold}$1${normal}"
+}
+
+function say_grey {
+  echo -e "${green}$1${normal}"
+}
+
+path_of_this_file=`dirname "$0"`
+path_of_this_file=`( cd "${path_of_this_file}" && pwd )`
+install_path=''
+function install_path_fct () {
+  cd $path_of_this_file/../
+  install_path=`pwd`
+  cd $path_of_this_file
+}
+install_path_fct
+
+
+function makesysD() {
+
+  say_blue "Make a systemD script $1"
+
+  say_grey "Link to /usr/local/bin"
+  sudo ln -sf ${path_of_this_file}/$1.init /usr/local/bin/$1.init
+
+  say_grey "Make script executable"
+  sudo chmod u+x /usr/local/bin/$1.init
+
+  say_grey "Copy to /etc/systemd/system/$1.service"
+  sudo cp -rf ${path_of_this_file}/$1.service /etc/systemd/system/$1.service
+
+  say_grey "Enable service"
+  sudo systemctl enable $1
+
+  say_grey "Start service"
+  sudo systemctl start $1
+}
+######################## END HELPERS
+
+makesysD remoteapp
