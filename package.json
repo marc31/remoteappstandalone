@@ -14,6 +14,10 @@
     "stylelint": "stylelint 'client/src/**/*.scss' --fix; exit 0;",
     "eslintserv": "eslint server/* --fix"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "dependencies": {
     "compression": "^1.7.2",
     "express": "^4.16.3",
@@ -35,7 +39,7 @@
     "html-webpack-plugin": "^3.0.7",
     "img-loader": "^2.0.1",
     "node-sass": "^4.8.3",
-    "optimize-css-assets-webpack-plugin": "^4.0.0",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
     "postcss-loader": "^2.1.3",
     "pug": "^2.0.3",
     "pug-loader": "^2.3.0",
@@ -46,6 +50,7 @@
     "stylelint-order": "^0.8.1",
     "stylelint-scss": "^2.5.0",
     "stylelint-webpack-plugin": "^0.10.3",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "^1.0.1",
     "webpack": "^3.11.0",
     "webpack-merge": "^4.1.2"

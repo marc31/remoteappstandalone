@@ -8,12 +8,14 @@ const common = require('./webpack.default.js');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = merge(common, {
     output: {
         path: path.resolve('client/dist'),
-        filename: '[hash].[name].js'
+        filename: '[hash].[name].js',
     },
     module: {
         rules: [
@@ -72,6 +74,9 @@ module.exports = merge(common, {
         new OptimizeCssAssetsPlugin({
             cssProcessor: require('cssnano'),
             cssProcessorOptions: { discardComments: { removeAll: true } },
+        }),
+        new UglifyJSPlugin({
+          sourceMap: true
         })
     ],
 });
