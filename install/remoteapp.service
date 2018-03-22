@@ -1,0 +1,24 @@
+[Unit]
+Description=remoteapp Service
+StartLimitBurst=3
+StartLimitIntervalSec=270s
+# systemd tries to restart multiple times (StartLimitBurst) and stops trying if the attempt count is reached within StartLimitIntervalSec
+
+
+[Service]
+Type=simple
+
+ExecStart=/usr/local/bin/remoteapp.init start
+# ExecStop=/usr/local/bin/remoteapp.init stop
+
+Restart=on-failure
+# will prevent automatic service restarts if exit code is
+RestartPreventExitStatus=13
+# RestartSec delay between executions is (default is 100ms)
+RestartSec=1s
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

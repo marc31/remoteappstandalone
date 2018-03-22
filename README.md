@@ -19,7 +19,7 @@ And if you want to start with your computer see /install/README.md
 
 # Use the app
 
-First you need to change the device in server/controllers/remoteApp.controllers.js
+First you need to change the device in server/controller/remoteApp.controllers.js
 
 ```js
 const device = 'YOUR_DEVICE_NAME_IN_LIRC';
