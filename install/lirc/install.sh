@@ -69,6 +69,34 @@ LIRCMD_CONF=""
 ########################################################
 EOF
 
+echoBlue "Copy lircd_sr6.conf in /etc/lirc/lircd.conf.d/"
+echoBlue "o|O|y|Y ou n|N|*"
+read repdrop
+echo -e "\t"
+case "$repdrop" in
+  o|O|y|Y)
+    sudo cp lircd_sr6.conf /etc/lirc/lircd.conf.d/lircd_sr6.conf
+  ;;
+  n|N|*)
+    echoBlue "Don't Copy lircd_sr6.conf in /etc/lirc/lircd.conf.d/"
+  ;;
+esac
+
+echoBlue "Move /etc/lirc/lircd.conf.d/devinput.lircd.conf to /etc/lirc/lircd.conf.d/devinput.lircd.conf.bak"
+echoBlue "o|O|y|Y ou n|N|*"
+read repdrop
+echo -e "\t"
+case "$repdrop" in
+  o|O|y|Y)
+    sudo mv /etc/lirc/lircd.conf.d/devinput.lircd.conf /etc/lirc/lircd.conf.d/devinput.lircd.conf.bak
+  ;;
+  n|N|*)
+    echoBlue "dont move /etc/lirc/lircd.conf.d/devinput.lircd.conf"
+  ;;
+esac
+
+/etc/lirc/lircd.conf.d/devinput.lircd.conf
+
 # Now use systemcl instead of init.d
 echoBlue "Stop lirc.service"
 sudo systemctl stop lirc.service
@@ -106,6 +134,7 @@ case "$repdrop" in
     echoBlue "If you want to add it latter just run sudo systemctl enable lirc.service or sudo systemctl enable lircd.service"
   ;;
 esac
+
 
 echoRed "You need to reboot pi"
 echoRed "You have to check that /etc/lirc/lircd.conf exist or dl one on http://lirc.sourceforge.net/remotes"
