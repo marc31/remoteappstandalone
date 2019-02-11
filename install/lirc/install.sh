@@ -73,16 +73,19 @@ EOF
 echoBlue "Stop lirc.service"
 sudo systemctl stop lirc.service
 if $0; then
+    echoBlue "Error on stopping lirc.service instead try to stop lircd.service"
     sudo systemctl stop lircd.service
 fi
 echoBlue "Start lirc.service"
 sudo systemctl start lirc.service
 if $0; then
+    echoBlue "Error on starting lirc.service instead try to start lircd.service"
     sudo systemctl start lircd.service
 fi
 echoBlue "Status lirc.service"
 sudo systemctl status lirc.service
 if $0; then
+    echoBlue "Status of lircd.service"
     sudo systemctl status lircd.service
 fi
 
