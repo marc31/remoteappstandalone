@@ -34,7 +34,7 @@ if ! grep -Fxq "dtoverlay=lirc-rpi,gpio_out_pin=$pinIN,gpio_in_pin=$pinOUT" /boo
   echoBlue "Edit /boot/config.txt"
   cat >> /boot/config.txt <<EOF
 
-dtoverlay=lirc-rpi,gpio_out_pin=$pinIN,gpio_in_pin=$pinOUT
+dtoverlay=lirc-rpi,gpio_out_pin=${pinIN},gpio_in_pin=${pinOUT}
 EOF
 else
   echoRed "Line already exist in /boot/config.txt"
@@ -72,19 +72,19 @@ EOF
 # Now use systemcl instead of init.d
 echoBlue "Stop lirc.service"
 sudo systemctl stop lirc.service
-if $0; then
+if [[ $? -ne 0 ]]; then
     echoBlue "Error on stopping lirc.service instead try to stop lircd.service"
     sudo systemctl stop lircd.service
 fi
 echoBlue "Start lirc.service"
 sudo systemctl start lirc.service
-if $0; then
+if [[ $? -ne 0 ]]; then
     echoBlue "Error on starting lirc.service instead try to start lircd.service"
     sudo systemctl start lircd.service
 fi
 echoBlue "Status lirc.service"
 sudo systemctl status lirc.service
-if $0; then
+if [[ $? -ne 0 ]]; then
     echoBlue "Status of lircd.service"
     sudo systemctl status lircd.service
 fi
@@ -97,7 +97,7 @@ echo -e "\t"
 case "$repdrop" in
   o|O|y|Y)
     sudo systemctl enable lirc.service
-    if $0; then
+    if [[ $? -ne 0 ]]; then
         sudo systemctl enable lircd.service
     fi
   ;;
