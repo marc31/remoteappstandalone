@@ -7,3 +7,7 @@ This permit to start the remoteAppStandAlone app with the computer
 $ chmod u+x install 
 $ ./install
 ```
+
+# You need lirc
+
+see lirc install script
