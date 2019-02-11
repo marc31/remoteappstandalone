@@ -72,10 +72,19 @@ EOF
 # Now use systemcl instead of init.d
 echoBlue "Stop lirc.service"
 sudo systemctl stop lirc.service
+if $0; then
+    sudo systemctl stop lircd.service
+fi
 echoBlue "Start lirc.service"
 sudo systemctl start lirc.service
+if $0; then
+    sudo systemctl start lircd.service
+fi
 echoBlue "Status lirc.service"
 sudo systemctl status lirc.service
+if $0; then
+    sudo systemctl status lircd.service
+fi
 
 # Launch it on startup
 echoBlue "Launch it on startup"
@@ -85,6 +94,9 @@ echo -e "\t"
 case "$repdrop" in
   o|O|y|Y)
     sudo systemctl enable lirc.service
+    if $0; then
+        sudo systemctl enable lircd.service
+    fi
   ;;
   n|N|*)
     echoBlue "If you want to add it latter just run sudo systemctl enable lirc.service"
