@@ -98,11 +98,12 @@ case "$repdrop" in
   o|O|y|Y)
     sudo systemctl enable lirc.service
     if [[ $? -ne 0 ]]; then
+        echoBlue "Error on enabling lirc.service instead try to enable lircd.service"
         sudo systemctl enable lircd.service
     fi
   ;;
   n|N|*)
-    echoBlue "If you want to add it latter just run sudo systemctl enable lirc.service"
+    echoBlue "If you want to add it latter just run sudo systemctl enable lirc.service or sudo systemctl enable lircd.service"
   ;;
 esac
 
