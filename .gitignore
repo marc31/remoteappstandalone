@@ -58,6 +58,7 @@ typings/
 
 # IDE
 /.idea/
+/.history/
 
 # Distribution file
 /client/dist
@@ -69,6 +70,7 @@ typings/
 
 # Tempory files
 *tmp*
+.DS_Store
 
 /server/debrid/auth.cookie
 
