@@ -59,6 +59,7 @@ typings/
 # IDE
 /.idea/
 /.history/
+/.vscode/
 
 # Distribution file
 /client/dist
@@ -75,7 +76,7 @@ typings/
 /server/debrid/auth.cookie
 server/debrid/debrid.conf.js
 
-marcW
+marcW/
 
 
 
