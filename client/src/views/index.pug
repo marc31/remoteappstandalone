@@ -6,22 +6,32 @@ block content
 
     div(class='row')
 
-      button(type='button' class='btn btn-red' data-cmd='off')
+      button(type='button' class='btn btn-red' data-cmd='OFF')
         span(class="icon-switchoff")
 
-      button(type='button' class='btn btn-blue' data-cmd='KEY_POWER')
+      button(type='button' class='btn btn-blue' data-cmd='ON')
         span(class="icon-switch")
 
     div(class='row')
-      button(type='button' class='btn btn-green' data-cmd='KEY_AUX' data-mode='repeat') Rasp
+
+      button(type='button' class='btn btn-green' data-cmd='AUX' data-mode='repeat') AUX
+      button(type='button' class='btn btn-green' data-cmd='CD' data-mode='repeat') CD
+      button(type='button' class='btn btn-green' data-cmd='TUNER' data-mode='repeat') TUNER
+      button(type='button' class='btn btn-green' data-cmd='DISC' data-mode='repeat') DISC
+      button(type='button' class='btn btn-green' data-cmd='TAPE_MON' data-mode='repeat') TAPE_MON
+      button(type='button' class='btn btn-green' data-cmd='TAPE2' data-mode='repeat') TAPE2
+      button(type='button' class='btn btn-green' data-cmd='VIDEO1' data-mode='repeat') VIDEO1
+      button(type='button' class='btn btn-green' data-cmd='VIDEO2' data-mode='repeat') VIDEO2
+      button(type='button' class='btn btn-green' data-cmd='VIDEO3' data-mode='repeat') VIDEO3
+
 
     div(class='row')
 
-      button(type='button' class='btn btn-red' data-cmd='KEY_MUTE')
+      button(type='button' class='btn btn-red' data-cmd='MUTE')
         span(class="icon-volume-mute")
 
-      button(type='button' class='btn btn-blue' data-cmd='KEY_VOLUMEDOWN' data-mode='repeat')
+      button(type='button' class='btn btn-blue' data-cmd='VOLUME_DOWN' data-mode='repeat')
         span(class="icon-volume-decrease")
 
-      button(type='button' class='btn btn-blue' data-cmd='KEY_VOLUMEUP' data-mode='repeat')
+      button(type='button' class='btn btn-blue' data-cmd='VOLUME_UP' data-mode='repeat')
         span(class="icon-volume-increase")
