@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.15;
   box-sizing: border-box;
   height: 100%;
@@ -19,8 +19,8 @@ body {
   min-width: 320px;
   background: #fff;
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  line-height: 1.4285em;
+  font-size: 16px;
+  line-height: 1rem;
   color: rgba(0, 0, 0, 0.87);
   font-smoothing: antialiased;
 }
@@ -34,7 +34,7 @@ body {
 }
 
 .btn {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -43,8 +43,8 @@ body {
   border: none;
   vertical-align: baseline;
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  margin: 0 0.25em 0.25rem 0;
-  padding: 0.78571429em 1.5em;
+  margin: 0 0.25rem 0.25rem 0;
+  padding: 0.78571429rem 1.5rem;
   text-transform: none;
   text-shadow: none;
   font-weight: 700;
