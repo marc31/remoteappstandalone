@@ -1,0 +1,3 @@
+.*/node_modules/.*
+dist/bundle.js
+install/lirc_node/lib/*.*
