@@ -20,8 +20,7 @@ exports.init = function(callback) {
 
   function irsendCallback(error, stdout, stderr) {
     exports._populateRemotes(error, stdout, stderr)
-    exports._populateCommands()
-    if (callback) callback()
+    exports._populateCommands(callback)
   }
 
   return true
@@ -58,14 +57,21 @@ exports._populateRemotes = function(error, stdout, stderr) {
   })
 }
 
-exports._populateCommands = function() {
+exports._populateCommands = function(callback) {
+  var remoteQ = []
   for (var remote in exports.remotes) {
-    ;(function(remote) {
+    remoteQ.push(remote)
+  }
+  var populate = function(remoteQ) {
+    if (remoteQ.length > 0) {
+      var remote = remoteQ.pop()
       exports.irsend.list(remote, '', function(error, stdout, stderr) {
         exports._populateRemoteCommands(remote, error, stdout, stderr)
+        populate(remoteQ)
       })
-    })(remote)
+    } else if (typeof callback === 'function') callback()
   }
+  populate(remoteQ)
 }
 
 exports._populateRemoteCommands = function(remote, error, stdout, stderr) {
@@ -75,5 +81,11 @@ exports._populateRemoteCommands = function(remote, error, stdout, stderr) {
     var commandName = element.match(/\s.*\s(.*)$/)
     if (commandName && commandName[1])
       exports.remotes[remote].push(commandName[1])
+  })
+
+  commands = stdout.split('\n')
+  commands.forEach(function(element, index, array) {
+    var commandName = element.trim()
+    if (commandName) exports.remotes[remote].push(commandName)
   })
 }
