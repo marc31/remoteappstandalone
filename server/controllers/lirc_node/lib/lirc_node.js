@@ -29,19 +29,32 @@ exports.init = function(callback) {
 
 // Private
 exports._populateRemotes = function(error, stdout, stderr) {
-  var remotes = stderr.split('\n')
+  var remotes
+  var remoteName
 
   exports.remotes = {}
 
+  remotes = stderr.split('\n')
   remotes.forEach(function(element, index, array) {
-    var remoteName = element.match(/\s(.*)$/)
-    if (remoteName) exports.remotes[remoteName[1]] = []
+    remoteName = element.match(/\s(.*)$/)
+    if (
+      remoteName &&
+      remoteName[1] &&
+      remoteName[1].indexOf('not found') < 0 &&
+      remoteName[1].indexOf('error') < 0
+    )
+      exports.remotes[remoteName[1]] = []
   })
 
   remotes = stdout.split('\n')
   remotes.forEach(function(element, index, array) {
-    var remoteName = element.trim()
-    if (remoteName) exports.remotes[remoteName[1]] = []
+    remoteName = element.trim()
+    if (
+      remoteName &&
+      remoteName.indexOf('not found') < 0 &&
+      remoteName.indexOf('error')
+    )
+      exports.remotes[remoteName] = []
   })
 }
 
