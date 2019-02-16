@@ -73,7 +73,7 @@ typings/
 *tmp*
 .DS_Store
 
-/server/debrid/auth.cookie
+server/debrid/auth.cookie
 server/debrid/debrid.conf.js
 
 marcW/

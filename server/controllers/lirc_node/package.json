@@ -1,0 +1,34 @@
+{
+  "name": "lirc_node",
+  "version": "0.0.4",
+  "description": "Control LIRC from Node",
+  "main": "lib/lirc_node.js",
+  "scripts": {
+    "test": "NODE_ENV=test mocha --require should --require test/common.js --reporter dot --timeout 5000 test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexbain/lirc_node.git"
+  },
+  "keywords": [
+    "lirc"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "2.3.3",
+    "q": "1.4.1",
+    "should": "7.1.0",
+    "sinon": "1.17.1"
+  },
+  "author": "Alex Bain <alex@alexba.in>",
+  "contributors": [
+    {
+      "name": "Mark Stickley",
+      "email": "markstickley@theyakshack.co.uk"
+    },
+    {
+      "name": "Wouter Verweirder",
+      "email": ""
+    }
+  ]
+}
