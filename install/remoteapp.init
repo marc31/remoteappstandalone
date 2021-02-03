@@ -9,10 +9,10 @@ start() {
   echo 'Try to Start RemoteApp'
 
   # Find PlaylistApp
-  path_of_this_file=`ls -l /usr/local/bin/remoteapp.init | awk '{print $NF}'`
+  path_of_this_file=$(ls -l /usr/local/bin/remoteapp.init | awk '{print $NF}')
 
   while [ ! -f ${path_of_this_file}/webpack.default.js -a ${path_of_this_file} != '/' ] ; do
-    path_of_this_file=`dirname ${path_of_this_file}`
+    path_of_this_file=$(dirname ${path_of_this_file})
   done
 
   if [ ${path_of_this_file} = '/' ]; then

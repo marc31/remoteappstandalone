@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-
 ######################## HELPERS
 
 ## Get path of this file
-path_of_this_file=`dirname "$0"`
-path_of_this_file=`( cd "${path_of_this_file}" && pwd )`
+path_of_this_file=$(dirname "$0")
+path_of_this_file=$( (cd "${path_of_this_file}" && pwd))
 
 # colorize and formatting command line
 green='\x1B[0;32m'
@@ -16,32 +15,31 @@ red='\x1B[0;31m'
 bold='\033[1m'
 normal='\033[0m'
 
-function say_blue {
+function say_blue() {
   echo -e "${blue}${bold}$1${normal}"
 }
 
-function say_red {
+function say_red() {
   echo -e "${red}${bold}$1${normal}"
 }
 
-function say_green {
+function say_green() {
   echo -e "${green}${bold}$1${normal}"
 }
 
-function say_grey {
+function say_grey() {
   echo -e "${green}$1${normal}"
 }
 
-path_of_this_file=`dirname "$0"`
-path_of_this_file=`( cd "${path_of_this_file}" && pwd )`
+path_of_this_file=$(dirname "$0")
+path_of_this_file=$( (cd "${path_of_this_file}" && pwd))
 install_path=''
-function install_path_fct () {
+function install_path_fct() {
   cd $path_of_this_file/../
-  install_path=`pwd`
+  install_path=$(pwd)
   cd $path_of_this_file
 }
 install_path_fct
-
 
 function makesysD() {
 
