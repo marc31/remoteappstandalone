@@ -1,12 +1,38 @@
 #!/usr/bin/env bash
 
+# ATTENTION NE FONCTIONNE PAS
+# dans /boot/config.txt
+# il faut rempalcer
+# dtoverlay=lirc-rpi,gpio_out_pin=$pinIN,gpio_in_pin=$pinOUT
+# par 2 lignes
+# Pour recevoir
+# dtoverlay=gpio-ir,gpio_pin=26
+# et pour emettre
+# dtoverlay=gpio-ir-tx,gpio_pin=4
+# ou mais pas tester dtoverlay=pwm-ir-tx,gpio_pin=4
+
+# De plus je pense que le fichier /etc/lirc/hardware.conf ne sert plus a rien
+
+# Par contre il faut bien modificer dans le fichier /etc/lirc/lirc_options.conf
+#     11 driver          = default
+#     12 device          = /dev/lirc0
+
+# Si problème il faut vérifier
+# ls /dev/lirc*
+# qu'il y ai bien un truc
+# et apres
+# sudo irsend SEND_ONCE NAD_SR6 VOLUME_DOWN
+
+echo 'read inside the install file'
+exit 0
+
 # Echo in Blue
-function echoBlue () {
+function echoBlue() {
   echo -e "\x1B[0;34m\033[1m${1}\033[0m"
 }
 
 # Echo in Red
-function echoRed () {
+function echoRed() {
   echo -e "\x1B[0;31m\033[1m${1}\033[0m"
 }
 
@@ -32,7 +58,7 @@ sudo apt-get install lirc
 # Edit your /boot/config.txt by entering the command below
 if ! grep -Fxq "dtoverlay=lirc-rpi,gpio_out_pin=$pinIN,gpio_in_pin=$pinOUT" /boot/config.txt; then
   echoBlue "Edit /boot/config.txt"
-  cat >> /boot/config.txt <<EOF
+  cat >>/boot/config.txt <<EOF
 
 dtoverlay=lirc-rpi,gpio_out_pin=${pinIN},gpio_in_pin=${pinOUT}
 EOF
@@ -46,7 +72,7 @@ sudo cp /etc/lirc/hardware.conf /etc/lirc/hardware.bak.conf
 
 # Add hardware
 echoBlue "Create hardware.conf"
-sudo cat > /etc/lirc/hardware.conf <<EOF
+sudo cat >/etc/lirc/hardware.conf <<EOF
 ########################################################
 # /etc/lirc/hardware.conf
 #
@@ -74,11 +100,11 @@ echoBlue "o|O|y|Y ou n|N|*"
 read repdrop
 echo -e "\t"
 case "$repdrop" in
-  o|O|y|Y)
-    sudo cp lircd_sr6.conf /etc/lirc/lircd.conf.d/lircd_sr6.conf
+o | O | y | Y)
+  sudo cp lircd_sr6.conf /etc/lirc/lircd.conf.d/lircd_sr6.conf
   ;;
-  n|N|*)
-    echoBlue "Don't Copy lircd_sr6.conf in /etc/lirc/lircd.conf.d/"
+n | N | *)
+  echoBlue "Don't Copy lircd_sr6.conf in /etc/lirc/lircd.conf.d/"
   ;;
 esac
 
@@ -87,11 +113,11 @@ echoBlue "o|O|y|Y ou n|N|*"
 read repdrop
 echo -e "\t"
 case "$repdrop" in
-  o|O|y|Y)
-    sudo mv /etc/lirc/lircd.conf.d/devinput.lircd.conf /etc/lirc/lircd.conf.d/devinput.lircd.conf.bak
+o | O | y | Y)
+  sudo mv /etc/lirc/lircd.conf.d/devinput.lircd.conf /etc/lirc/lircd.conf.d/devinput.lircd.conf.bak
   ;;
-  n|N|*)
-    echoBlue "dont move /etc/lirc/lircd.conf.d/devinput.lircd.conf"
+n | N | *)
+  echoBlue "dont move /etc/lirc/lircd.conf.d/devinput.lircd.conf"
   ;;
 esac
 
@@ -101,20 +127,20 @@ esac
 echoBlue "Stop lirc.service"
 sudo systemctl stop lirc.service
 if [[ $? -ne 0 ]]; then
-    echoBlue "Error on stopping lirc.service instead try to stop lircd.service"
-    sudo systemctl stop lircd.service
+  echoBlue "Error on stopping lirc.service instead try to stop lircd.service"
+  sudo systemctl stop lircd.service
 fi
 echoBlue "Start lirc.service"
 sudo systemctl start lirc.service
 if [[ $? -ne 0 ]]; then
-    echoBlue "Error on starting lirc.service instead try to start lircd.service"
-    sudo systemctl start lircd.service
+  echoBlue "Error on starting lirc.service instead try to start lircd.service"
+  sudo systemctl start lircd.service
 fi
 echoBlue "Status lirc.service"
 sudo systemctl status lirc.service
 if [[ $? -ne 0 ]]; then
-    echoBlue "Status of lircd.service"
-    sudo systemctl status lircd.service
+  echoBlue "Status of lircd.service"
+  sudo systemctl status lircd.service
 fi
 
 # Launch it on startup
@@ -123,18 +149,17 @@ echoBlue "o|O|y|Y ou n|N|*"
 read repdrop
 echo -e "\t"
 case "$repdrop" in
-  o|O|y|Y)
-    sudo systemctl enable lirc.service
-    if [[ $? -ne 0 ]]; then
-        echoBlue "Error on enabling lirc.service instead try to enable lircd.service"
-        sudo systemctl enable lircd.service
-    fi
+o | O | y | Y)
+  sudo systemctl enable lirc.service
+  if [[ $? -ne 0 ]]; then
+    echoBlue "Error on enabling lirc.service instead try to enable lircd.service"
+    sudo systemctl enable lircd.service
+  fi
   ;;
-  n|N|*)
-    echoBlue "If you want to add it latter just run sudo systemctl enable lirc.service or sudo systemctl enable lircd.service"
+n | N | *)
+  echoBlue "If you want to add it latter just run sudo systemctl enable lirc.service or sudo systemctl enable lircd.service"
   ;;
 esac
-
 
 echoRed "You need to reboot pi"
 echoRed "You have to check that /etc/lirc/lircd.conf exist or dl one on http://lirc.sourceforge.net/remotes"
