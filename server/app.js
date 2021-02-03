@@ -13,23 +13,9 @@ app.use(compression())
 
 app.use(logger('dev'))
 
-// Static
-app.use('/', express.static(`${__dirname}../../client/dist/`))
-
-// First Page
-app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: `${__dirname}../../client/dist` })
-})
-
-// Api route
+// Api route for remoteApp
 const remoteApp = require('./controllers/remoteApp.controller.js')
-
-app.route('/api/remoteApp/:toDo').get(remoteApp.toDo)
-
-// Redirect in all other case
-app.get('/*', (req, res) => {
-  res.redirect('/')
-})
+app.route('/api/remoteApp/:cmd').get(remoteApp.cmd)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
