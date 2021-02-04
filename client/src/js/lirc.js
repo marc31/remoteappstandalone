@@ -1,3 +1,5 @@
+const baseUrl = 'http://localhost:8085/'
+const apiUrl = `${baseUrl}api/remoteApp/`
 const lircClient = (function lircClient(document, window) {
   // //////////////////////////////////
   // / Private
@@ -23,7 +25,7 @@ const lircClient = (function lircClient(document, window) {
       }
     }
 
-    xhr.open('GET', `/api/remoteApp/${cmd}`, true)
+    xhr.open('GET', `${apiUrl}/${cmd}`, true)
     xhr.send(null)
   }
 
