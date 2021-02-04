@@ -14,7 +14,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = merge(common, {
   output: {
-    path: path.resolve('client/dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[hash].[name].js'
   },
   module: {
