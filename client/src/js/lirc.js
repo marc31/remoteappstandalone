@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8085/'
+const baseUrl = 'http://rasp.local:8085/'
 const apiUrl = `${baseUrl}api/remoteApp/`
 
 const lircClient = (function lircClient(document, window) {

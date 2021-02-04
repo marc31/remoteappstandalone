@@ -1,9 +1,13 @@
 const express = require('express')
+const cors = require('cors')
 const logger = require('morgan')
 const helmet = require('helmet')
 const compression = require('compression')
 
 const app = express()
+
+// CORS middleware.
+app.use(cors())
 
 // Helmet middleware.
 app.use(helmet())
