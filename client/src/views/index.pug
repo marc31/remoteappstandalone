@@ -14,13 +14,13 @@ block content
 
     div(class='row')
 
-      button(type='button' class='btn btn-green' data-cmd='AUX' data-mode='repeat') AUX
-      button(type='button' class='btn btn-green' data-cmd='CD' data-mode='repeat') CD
-      button(type='button' class='btn btn-green' data-cmd='TUNER' data-mode='repeat') TUNER
-      button(type='button' class='btn btn-green' data-cmd='DISC' data-mode='repeat') DISC
+      button(type='button' class='btn btn-green' data-cmd='AUX' data-mode='repeat') AUX (DAC Raspberry)
+      //- button(type='button' class='btn btn-green' data-cmd='CD' data-mode='repeat') CD
+      //- button(type='button' class='btn btn-green' data-cmd='TUNER' data-mode='repeat') TUNER
+      button(type='button' class='btn btn-green' data-cmd='DISC' data-mode='repeat') DISC (JACK)
       //- button(type='button' class='btn btn-green' data-cmd='TAPE_MON' data-mode='repeat') TAPE_MON
       //- button(type='button' class='btn btn-green' data-cmd='TAPE2' data-mode='repeat') TAPE2
-      button(type='button' class='btn btn-green' data-cmd='VIDEO1' data-mode='repeat') VIDEO
+      button(type='button' class='btn btn-green' data-cmd='VIDEO1' data-mode='repeat') VIDEO (Bluetooth Roxa)
 
     div(class='row')
 
@@ -32,3 +32,6 @@ block content
 
       button(type='button' class='btn btn-blue' data-cmd='VOLUME_UP' data-mode='repeat')
         span(class="icon-volume-increase")
+
+    div(class='row')
+      <p id="server-rps"></p>
