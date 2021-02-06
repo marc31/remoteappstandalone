@@ -1,93 +1,101 @@
-const baseUrl = 'http://rasp.local:8085/'
+const baseUrl = 'http://192.168.1.51:8085/'
 const apiUrl = `${baseUrl}api/remoteApp/`
 
-const lircClient = (function lircClient(document, window) {
-  // //////////////////////////////////
-  // / Private
-  // //////////////////////////////////
-  function sendCmd(cmd, cb) {
-    window.console.log(cmd)
+// element for display server response
+let servRespEl
 
-    const xhr = new window.XMLHttpRequest()
-    let reponse = {}
+// Var to cleanInterval used
+// to sendings numbers of command
+// when user keep the mouse btn down
+let interval
 
-    xhr.onreadystatechange = function onReadyStateChange() {
-      if (xhr.readyState === 4) {
-        try {
-          reponse = JSON.parse(xhr.responseText)
-        } catch (e) {
-          window.console.log('Api error')
-        }
+function isEmpty(str) {
+  return str && str.length === 0
+}
 
-        if (xhr.status === 500) {
-          window.alert(reponse.msg)
-        }
-        if (cb) cb(reponse)
+// Send command to the api
+function sendCmd(cmd) {
+  console.log(cmd)
+
+  servRespEl.innerHTML = ''
+
+  fetch(`${apiUrl}${cmd}`)
+    .then(res => {
+      if (res.ok) {
+        res.json().then(res => {
+          servRespEl.innerHTML = `Status: ${res.success}. Msg: ${res.msg}`
+          console.log(res)
+        })
+      } else {
+        console.log('Mauvaise réponse du réseau')
       }
-    }
+    })
+    .catch(err =>
+      console.log(
+        `Il y a eu un problème avec l'opération fetch: ${err.message}`
+      )
+    )
+}
 
-    xhr.open('GET', `${apiUrl}${cmd}`, true)
-    xhr.send(null)
+// Attach event listener on btn
+// to call number times the api
+// when user mouse down
+function addRepeatClick(input, cmd) {
+  const speed = 500
+
+  function preventDefaultClearInterval(e) {
+    e.preventDefault()
+    clearInterval(interval)
   }
 
-  function addRepeatClick(input, cmd) {
-    let interval
-    let count = 0
-    const speed = 500
-
-    input.addEventListener('mousedown', () => {
-      interval = setInterval(() => {
-        count++
-        sendCmd(cmd)
-        if (count > 10) {
-          clearInterval(interval)
-          count = 0
-        }
-      }, speed)
-    })
-
-    input.addEventListener('mouseup', () => {
+  function repeatClickHelper(e) {
+    preventDefaultClearInterval(e)
+    sendCmd(cmd)
+    interval = setInterval(() => {
       sendCmd(cmd)
-      clearInterval(interval)
-    })
+    }, speed)
   }
 
-  function addClick(input, cmd) {
-    input.addEventListener('click', () => {
-      sendCmd(cmd)
-      return true
-    })
-  }
+  input.addEventListener('touchstart', repeatClickHelper, false)
+  input.addEventListener('touchend', preventDefaultClearInterval, false)
+  input.addEventListener('touchcancel', preventDefaultClearInterval, false)
+  input.addEventListener('touchleave', preventDefaultClearInterval, false)
 
-  function isEmpty(str) {
-    return str && str.length === 0
-  }
+  input.addEventListener('mousedown', repeatClickHelper)
+}
 
-  function addListener(input) {
-    const { cmd, mode } = input.dataset
+// Click event
+function addClick(input, cmd) {
+  input.addEventListener('click', () => {
+    clearInterval(interval)
+    sendCmd(cmd)
+  })
+}
 
-    if (!isEmpty(cmd)) {
-      if (!isEmpty(mode) && mode === 'repeat') {
-        return addRepeatClick(input, cmd)
-      }
-      return addClick(input, cmd)
+let x = setInterval(() => console.log('salut'), 1000)
+clearInterval(x)
+clearInterval(x)
+
+function addListener(input) {
+  const { cmd, mode } = input.dataset
+  if (!isEmpty(cmd)) {
+    if (!isEmpty(mode) && mode === 'repeat') {
+      addRepeatClick(input, cmd)
     }
-    return true
+    addClick(input, cmd)
   }
+}
 
-  // //////////////////////////////////
-  // / Public
-  // //////////////////////////////////
-  function addListeners() {
-    const inputs = document.querySelectorAll('button')
-
-    for (let i = 0, l = inputs.length; i < l; i++) {
-      addListener(inputs[i])
-    }
+function addListeners() {
+  const inputs = document.querySelectorAll('button')
+  servRespEl = document.querySelector('#server-rps')
+  for (let i = 0, l = inputs.length; i < l; i++) {
+    addListener(inputs[i])
   }
+}
 
-  return { addListeners }
-})(document, window)
+window.addEventListener('mouseup', () => {
+  clearInterval(interval)
+})
 
-// DOM is ready
-window.addEventListener('load', lircClient.addListeners)
+window.addEventListener('load', addListeners)
