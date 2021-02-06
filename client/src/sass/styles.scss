@@ -11,6 +11,20 @@ html {
   box-sizing: inherit;
 }
 
+:root {
+  --color-blue-light: #21c4d0;
+  --color-blue: #2597ee;
+  --color-blue-dark: #2185d0;
+
+  --color-green-light: #23ff55;
+  --color-green: #22d14b;
+  --color-green-dark: #21ba45;
+
+  --color-red-light: #ff1e1e;
+  --color-red: #eb2727;
+  --color-red-dark: #db2828;
+}
+
 body {
   height: 100%;
   margin: 0;
@@ -40,7 +54,7 @@ body {
   display: inline-block;
   min-height: 1em;
   outline: 0;
-  border: none;
+  border-style: none;
   vertical-align: baseline;
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   margin: 0 0.25rem 0.25rem 0;
@@ -62,31 +76,37 @@ body {
 }
 
 .btn-blue {
-  background-color: #2185d0;
+  background-color: var(--color-blue-dark);
 }
 
-.btn-blue:hover,
-.btn-blue:active,
-.btn-blue:focus {
-  background-color: #58f7fc;
+.btn-blue:hover {
+  background-color: var(--color-blue);
+}
+
+.btn-blue:active {
+  background-color: var(--color-blue-light);
 }
 
 .btn-green {
-  background-color: #21ba45;
+  background-color: var(--color-green-dark);
 }
 
-.btn-green:hover,
-.btn-green:active,
-.btn-green:focus {
-  background-color: #23ff55;
+.btn-green:hover {
+  background-color: var(--color-green);
+}
+
+.btn-green:active {
+  background-color: var(--color-green-light);
 }
 
 .btn-red {
-  background-color: #db2828;
+  background-color: var(--color-red-dark);
 }
 
-.btn-red:hover,
-.btn-red:active,
-.btn-red:focus {
-  background-color: #ff1e1e;
+.btn-red:hover {
+  background-color: var(--color-red);
+}
+
+.btn-red:active {
+  background-color: var(--color-red-light);
 }
