@@ -1,17 +1,19 @@
 // Plugins
 const path = require('path')
 
-const StyleLintPlugin = require('stylelint-webpack-plugin')
-
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const common = require('./webpack.default.js')
 
 module.exports = merge(common, {
-  output: {
-    path: path.resolve('client/dist'),
-    filename: 'js/[name].js'
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    port: 9000
   },
-  devtool: 'cheap-module-eval-source-map',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[hash].[name].js'
+  },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -52,6 +54,5 @@ module.exports = merge(common, {
         ]
       }
     ]
-  },
-  plugins: [new StyleLintPlugin({})]
+  }
 })

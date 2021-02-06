@@ -2,6 +2,7 @@ const path = require('path')
 
 // Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -44,6 +45,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new StyleLintPlugin({ context: path.resolve(__dirname, 'src/') }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/views/index.pug')
